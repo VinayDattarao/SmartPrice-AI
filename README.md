@@ -122,6 +122,8 @@ SmartPrice-AI/
 ## Installation
 
 ### For Users
+### 1. Clone the repository
+```bash
 # Clone repository
 git clone https://github.com/yourusername/SmartPrice_AI.git
 cd SmartPrice_AI
@@ -131,8 +133,7 @@ git lfs install
 ```
 
 ### 2. Configure Git LFS tracking
-
-```
+```bash
 # Track large files
 git lfs track "*.pth"
 git lfs track "*.bin"
@@ -142,8 +143,7 @@ git add .gitattributes
 ```
 
 ### 3. Add files in correct order
-
-```
+```bash
 # First add small code/config files
 git add README.md requirements.txt config/* src/*
 
@@ -160,8 +160,7 @@ git push -u origin main
 ```
 
 ### 4. Create a virtual environment
-
-```
+```bash
 python -m venv .venv
 source .venv/bin/activate  # Linux/Mac
 # or
@@ -169,29 +168,25 @@ source .venv/bin/activate  # Linux/Mac
 ```
 
 ### 5. Download and extract models/datasets
-
 - Go to the **[Releases](https://github.com/yourusername/SmartPrice_AI/releases)** section on GitHub.
 
 - Download multi-part `.7z` files:
-
   - `models.7z.001`, `models.7z.002`, … → contains all model weights (`*.pt`, `*.bin`) and tokenizer files.
   - `datasets.7z.001`, `datasets.7z.002`, … → contains all CSVs, image folders, and other data required.
 
 - Extract using 7-Zip:
-
   1. Place all parts of a set in the **same folder**.
   2. Right-click the first part (`.001`) → **7-Zip → Extract here**.
   3. 7-Zip will automatically combine all parts into the `models/` and `data/` folders.
 
-```
+```bash
 # Example extraction (if single-part 7z)
 7z x models.7z.001 -omodels/
 7z x datasets.7z.001 -odata/
 ```
 
 ### 6. Verify directory structure
-
-```
+```bash
 SmartPrice_AI/
 ├─ models/
 │  ├─ model_weights.pt
@@ -210,11 +205,9 @@ SmartPrice_AI/
 ```
 
 ### 7. Run a test inference
-
-```
+```bash
 python src/inference.py --image path/to/sample.jpg --text "Sample product description"
 ```
-
 
 3. Install dependencies:
 ```bash
