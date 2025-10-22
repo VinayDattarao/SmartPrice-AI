@@ -69,85 +69,7 @@ Average prediction time:
 - **Resolution**: 224x224 image input
 - **Text Length**: Up to 128 tokens
 
-## Installation
 
-### Prerequisites
-- Python 3.8+
-- CUDA-compatible GPU (optional, falls back to CPU)
-- Git
-- 7-Zip (for dataset extraction)
-- ~10GB free disk space
-
-### Quick Setup
-
-1. Clone the repository:
-```bash
-git clone https://github.com/VinayDattarao/SmartPrice-AI.git
-cd SmartPrice-AI
-```
-
-2. Create and activate virtual environment:
-```bash
-# Create virtual environment
-python -m venv .venv
-
-# Activate on Windows
-.\.venv\Scripts\activate
-
-# Activate on Linux/Mac
-source .venv/bin/activate
-```
-
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-4. Download required files:
-   - Visit [Releases](https://github.com/VinayDattarao/SmartPrice-AI/releases)
-   - Download and extract:
-     - `best_model.zip` → extract to `models/`
-     - `tokenizer.zip` → extract to `models/`
-     - `dataset.7z.*` files (optional)
-
-```bash
-# Extract model files (Windows PowerShell)
-Expand-Archive -Path best_model.zip -DestinationPath models/
-Expand-Archive -Path tokenizer.zip -DestinationPath models/
-
-# For dataset (using 7-Zip)
-# The split files will automatically combine when extracting
-```
-
-5. Verify Installation:
-```bash
-# Run the installation test script
-python test_installation.py
-```
-
-The test script checks:
-- Python version compatibility
-- CUDA availability
-- Required files presence
-- Model and tokenizer loading
-- Configuration validation
-
-### Common Issues
-
-1. CUDA not found:
-   - Ensure NVIDIA drivers are installed
-   - Install CUDA Toolkit 11.x+
-   - Check `torch.cuda.is_available()`
-
-2. Missing files:
-   - Verify all files from Releases are downloaded
-   - Check file paths match project structure
-   - Run `test_installation.py` for detailed diagnostics
-
-3. Import errors:
-   - Ensure virtual environment is activated
-   - Verify all dependencies are installed: `pip list`
-   - Check Python version: `python --version`
 - **Image Processing**: EfficientNet-v2-S for efficient image feature extraction
 - **Feature Fusion**: Dual cross-attention mechanism
 - **Resolution**: 224x224 image input
@@ -205,90 +127,76 @@ SmartPrice-AI/
 
 ## Installation
 
-### For Users
+### Installation Steps
+
 1. Clone the repository:
 ```bash
 git clone https://github.com/VinayDattarao/SmartPrice-AI.git
 cd SmartPrice-AI
 ```
 
-2. Download required model files and datasets:
+2. Download required files:
    - Visit [Releases](https://github.com/VinayDattarao/SmartPrice-AI/releases)
-   - Download:
-     - `model_files.zip` - Contains model weights and tokenizer
-     - `dataset_files.zip` - Contains sample datasets (optional)
-   - Extract the files:
+   - Download these files:
+     - `best_model.zip` - Contains the trained model
+     - `tokenizer.zip` - Contains tokenizer files
+     - `dataset.7z.001`, `dataset.7z.002`, `dataset.7z.003` (optional, for training)
+
+3. Extract the files:
 ```bash
-# Extract model files
-unzip model_files.zip
-# Extract dataset (optional)
-unzip dataset_files.zip
+# Create directories if they don't exist
+mkdir -p models/tokenizer
+
+# Extract model and tokenizer (Windows PowerShell)
+Expand-Archive -Path best_model.zip -DestinationPath models/
+Expand-Archive -Path tokenizer.zip -DestinationPath models/tokenizer/
+
+# For dataset (using 7-Zip, optional)
+# Place all dataset.7z.* files in the same folder and extract the first file
+# 7-Zip will automatically combine all parts
 ```
 
-### For Contributors (Setting up the repository)
-1. Clone and initialize:
+4. Set up Python environment:
 ```bash
-# Clone empty repository
-git clone https://github.com/VinayDattarao/SmartPrice-AI.git
-cd SmartPrice-AI
-
-# Initialize Git LFS
-git lfs install
-```
-
-2. Configure Git LFS tracking:
-```bash
-# Track large files
-git lfs track "*.pth"
-git lfs track "*.bin"
-git lfs track "models/tokenizer/*"
-git lfs track "data/data/dataset/*.csv"
-git add .gitattributes
-```
-
-3. Add files in correct order:
-```bash
-# First add small files
-git add README.md requirements.txt config/* src/*
-
-# Then add model files using Git LFS
-git add models/*.pth
-git add models/tokenizer/*
-
-# Add datasets
-git add data/data/dataset/*.csv
-
-# Commit and push
-git commit -m "Initial commit with all files"
-git push -u origin main
-```
-```
-
-2. Create a virtual environment:
-```bash
+# Create virtual environment
 python -m venv .venv
-source .venv/bin/activate  # Linux/Mac
-# or
-.venv\Scripts\activate     # Windows
-```
 
-3. Install dependencies:
-```bash
+# Activate virtual environment
+# On Windows:
+.\.venv\Scripts\activate
+# On Linux/Mac:
+source .venv/bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-4. Verify Installation:
+5. Verify Installation:
 ```bash
-# Run the installation test script
 python test_installation.py
 ```
 
-The test script will check:
+The test script checks:
 - Python version compatibility
 - CUDA availability
 - Required files presence
 - Model and tokenizer loading
 - Configuration validation
+
+### Common Issues and Solutions
+
+1. "Model file not found":
+   - Make sure you extracted `best_model.zip` to the `models/` folder
+   - Verify `models/best_model.pth` exists
+
+2. "Tokenizer files missing":
+   - Check that `tokenizer.zip` was extracted to `models/tokenizer/`
+   - Required files: `tokenizer.json`, `vocab.json`, `special_tokens_map.json`
+
+3. CUDA/GPU issues:
+   - Install NVIDIA drivers if using GPU
+   - Model works on CPU if no GPU available
+   - Check GPU status: `python -c "import torch; print(torch.cuda.is_available())"` 
 
 ## Usage
 
