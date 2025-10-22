@@ -135,25 +135,51 @@ git clone https://github.com/VinayDattarao/SmartPrice-AI.git
 cd SmartPrice-AI
 ```
 
-2. Download required files:
-   - Visit [Releases](https://github.com/VinayDattarao/SmartPrice-AI/releases)
-   - Download these files:
-     - `best_model.zip` - Contains the trained model
-     - `tokenizer.zip` - Contains tokenizer files
-     - `dataset.7z.001`, `dataset.7z.002`, `dataset.7z.003` (optional, for training)
-
-3. Extract the files:
+2. Prepare download directory:
 ```bash
-# Create directories if they don't exist
-mkdir -p models/tokenizer
+# Create a downloads folder in the project root
+mkdir downloads
+cd downloads
+```
 
-# Extract model and tokenizer (Windows PowerShell)
-Expand-Archive -Path best_model.zip -DestinationPath models/
-Expand-Archive -Path tokenizer.zip -DestinationPath models/tokenizer/
+3. Download required files:
+   - Visit [Releases](https://github.com/VinayDattarao/SmartPrice-AI/releases)
+   - Download all these files to the `downloads` folder:
+     - `best_model.zip` (Contains trained model)
+     - `tokenizer.zip` (Contains tokenizer files)
+     - `dataset.7z.001` (Dataset part 1)
+     - `dataset.7z.002` (Dataset part 2)
+     - `dataset.7z.003` (Dataset part 3)
 
-# For dataset (using 7-Zip, optional)
-# Place all dataset.7z.* files in the same folder and extract the first file
-# 7-Zip will automatically combine all parts
+4. Extract files (step by step):
+```bash
+# First, create all necessary directories
+mkdir -p ../models/tokenizer
+mkdir -p ../data/data/dataset
+
+# Extract model files (Windows PowerShell)
+Expand-Archive -Path best_model.zip -DestinationPath ../models/
+Expand-Archive -Path tokenizer.zip -DestinationPath ../models/tokenizer/
+
+# Extract dataset using 7-Zip
+# Make sure all three files are in the same folder:
+# - dataset.7z.001
+# - dataset.7z.002
+# - dataset.7z.003
+# 
+# Then use 7-Zip to extract dataset.7z.001
+# Right-click on dataset.7z.001 -> 7-Zip -> Extract to "../data/data/dataset/"
+# OR use command line:
+# "C:\Program Files\7-Zip\7z.exe" x dataset.7z.001 -o"../data/data/dataset/"
+
+# Verify the extracted files:
+cd ..  # Go back to project root
+dir models\best_model.pth  # Should show the model file
+dir models\tokenizer\tokenizer.json  # Should show tokenizer files
+dir data\data\dataset\train.csv  # Should show dataset files
+```
+
+Note: Keep the downloaded files in the `downloads` folder as backup. After verifying everything works, you can safely delete the `downloads` folder to save space.
 ```
 
 4. Set up Python environment:
