@@ -1,0 +1,49 @@
+# Model Configuration
+model:
+  text_model: "microsoft/deberta-v3-base"  # Stronger text model
+  image_model: "efficientnet_v2_s"  # Stronger image model
+  max_text_length: 128  # Increased text context
+  image_size: 224  # Standard image size for better transfer learning
+  hidden_size: 512  # Larger feature space
+  dropout: 0.15  # Balanced dropout
+  attention_heads: 8  # More attention heads
+  feature_fusion: "dual_cross_attention"  # Enhanced fusion
+  mixed_precision: true
+  price_binning: true  # Enable price range awareness
+  num_price_bins: 100  # Number of price ranges
+  use_layernorm: true  # Additional normalization
+  activation: "gelu"  # Better activation function
+  residual_connections: true  # Add skip connections
+
+# Training Configuration
+training:
+  batch_size: 32  # Smaller batch size for better generalization
+  learning_rate: 0.0001  # Conservative learning rate
+  weight_decay: 0.01  # Strong regularization
+  num_workers: 4
+  pin_memory: true
+  persistent_workers: true
+  scheduler:
+    type: "one_cycle"
+    max_lr: 0.001
+    epochs: 50  # Train longer
+    warmup_epochs: 5  # Longer warmup
+    cooldown_epochs: 3  # Gradual cooldown
+  gradient_clipping: 0.5  # Tighter gradient control
+  label_smoothing: 0.1
+  ema_decay: 0.999  # Exponential moving average
+  loss_weights:
+    smape: 0.7
+    mse: 0.2
+    huber: 0.1  # Add Huber loss for robustness
+  mixup:
+    enabled: true
+    alpha: 0.2  # Mixup augmentation
+  gradient_accumulation_steps: 2  # Effective batch size of 64
+
+# Data Configuration
+data:
+  train_csv: "data/data/dataset/train.csv"
+  test_csv: "data/data/dataset/test.csv"
+  image_dir: "data/data/dataset/images"
+  output_dir: "outputs"

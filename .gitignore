@@ -1,0 +1,196 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# VS Code
+.vscode/
+*.code-workspace
+.history/
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+.idea_modules/
+
+# Training artifacts and temporary files
+wandb/
+logs/
+checkpoints/
+*_tmp.csv
+*.tmp
+backup_*/
+temp_*/
+tmp/
+
+# Large files and datasets
+*.h5
+*.hdf5
+*.pkl
+*.npy
+*.npz
+*.arrow
+*.parquet
+
+# Data directories and files
+data/data/dataset/images/
+data/data/dataset/train.csv
+data/data/dataset/test.csv
+data/data/dataset/test_subset.csv
+data/images/
+data/train_subset_tmp.csv
+data/val_subset_tmp.csv
+data/__MACO/
+outputs/test_out.csv
+*.csv
+!requirements.txt
+
+# Model files
+models/
+*.pth
+*.pt
+*.bin
+*.onnx
+*.tflite
+*.pb
+models/tokenizer/*
+!models/tokenizer/special_tokens_map.json
+!models/tokenizer/tokenizer_config.json
+
+# Cache directories
+.cache/
+.torch/
+.transformers/
+**/__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Debug files
+debug_*.py
+test_*.py
+setup_*.py
+emergency_*.py
+*.log
+*.prof
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Documentation build
+_build/
+_static/
+_templates/
+
+# Environment and local settings
+.env*
+.python-version
+pyrightconfig.json
+.mypy_cache/
+
+# IDE specific
+*.sublime-workspace
+*.sublime-project
+.settings/
+.project
+.classpath
+.factorypath
+
+# Compiled files
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.dylib
+
+# Packaging
+*.tar
+*.tar.gz
+*.zip
+*.rar
+*.7z
+*.onnx
+*.mlmodel
+*.tflite
+*.pb
+*.tar.gz
+*.zip
+*.rar
+*.7z
+
+# Log files
+*.log
+*.out
+*.err
+
+# Local development
+local_settings.py
+*.sqlite3
+*.db
+
+# Environment variables
+.env*
+!.env.example
+
+# Documentation drafts
+docs/_build/
+documentation_draft.md
+strategy_*.md
+
+# Test coverage
+.coverage
+htmlcov/
+.tox/
+.nox/
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.pytest_cache/
+
+# Profiling data
+*.prof
+*.stats
